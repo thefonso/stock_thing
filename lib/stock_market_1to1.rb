@@ -1,25 +1,38 @@
 require 'stock'
+# TODO maybe rename this
 
-class StockMarket1to1
-  attr_reader :stocks
+class StockMarket
+
+  attr_accessor :name, :stocks, :observers
+
+  def initialize(name, stocks, tickers)
+    @name = name
+    @observers = []
+    @stocks = stocks
+    register_tickers(tickers)
+  end
   
-  def initialize(stock_array)
-    @stocks = []  
-    stock_array.each do |stock_name|
-      createstock(stock_name)
-      register_ticker(@stocks.last)
+  def register_tickers(tickers)
+    tickers.each do |ticker|
+      register_observer(ticker)
     end
   end
- 
-  def createstock(stock)
-      @stocks << Stock.new(stock)
+  
+  def notify(name, price)
+    notify_ticker(name, price)
   end
   
-  def register_ticker(stock)
-      stock.register_observer(stock.name)
+  def register_observer(observer)
+    @observers << observer
   end
   
-  def notify
-    
+  def unregister_observer(observer)
+    @observers.delete(observer)
+  end
+  
+  def notify_ticker(name, price)
+    @observers.each do |observer|
+      observer.notify(name, price)
+    end
   end
 end

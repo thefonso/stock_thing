@@ -2,7 +2,7 @@ require 'stock'
 require 'stock_ticker'
 describe Stock do
   let (:stock) {Stock.new("8thLight")}
-  let (:stockticker) {StockTicker.new("google_ticker")}
+  let (:stockmarket) {StockMarket.new("nyse", [Stock.new("hello")], [Ticker.new("ticker")])}
   
   
   it 'should have a name' do
@@ -14,19 +14,19 @@ describe Stock do
   end
   
   it 'should be able to register an observer' do
-    stock.register_observer(stockticker)
-    stock.observers.should include(stockticker)
+    stock.register_observer(stockmarket)
+    stock.observers.should include(stockmarket)
   end
   
   it 'should be able to unregister an observer' do
-    stock.register_observer(stockticker)
-    stock.observers.should include(stockticker)
-    stock.unregister_observer(stockticker)  
+    stock.register_observer(stockmarket)
+    stock.observers.should include(stockmarket)
+    stock.unregister_observer(stockmarket)  
     stock.observers.should be_empty
   end
   
   it 'should notify an observer' do
-    stock.register_observer(stockticker)
+    stock.register_observer(stockmarket)
     stock.notify.should be_true
   end
 end

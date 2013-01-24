@@ -5,8 +5,9 @@ class StockTicker
   def initialize(name)
     @name = name
   end
-  
-  def notify(name, price)
+
+  def notify_ticker(name, price)
     p "#{name} - #{price}"
   end
+
 end

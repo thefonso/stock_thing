@@ -1,5 +1,7 @@
 class Stock
+  
   attr_accessor :name, :observers
+  
   def initialize(name)
     @name = name
     @observers = []

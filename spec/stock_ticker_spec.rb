@@ -13,6 +13,6 @@ describe StockTicker do
   end
   
   it 'should be able to notify' do
-    stockticker.notify('mages',1000).should_not be_nil
+    stockticker.notify_ticker('mages',1000).should_not be_nil
   end
 end

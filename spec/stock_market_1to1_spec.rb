@@ -1,9 +1,11 @@
 require 'stock_market_1to1'
 
-describe StockMarket1to1 do
-  let (:stockmarket)  {StockMarket1to1.new(['hello', 'world', 'foo', 'bar', '8thlight'])}
-  it 'should be able to register 5 observers' do
-    stockmarket.stocks.count.should == 5
+describe StockMarket do
+  
+  let (:stockmarket)  {StockMarket.new("name", [Stock.new], [Ticker.new])}
+  
+  it 'should be able to register 1 stock' do
+    stockmarket.stocks.count.should == 1
     stockmarket.stocks.first.class.should == Stock
   end
   
