@@ -2,7 +2,7 @@ require 'stock'
 require 'stock_ticker'
 describe Stock do
   let (:stock) {Stock.new("8thLight")}
-  let (:stockticker) {StockTicker.new}
+  let (:stockticker) {StockTicker.new("google_ticker")}
   
   
   it 'should have a name' do
