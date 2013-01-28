@@ -13,18 +13,5 @@ class Stock
     formated_price = (precise_price * 100).to_i / 100.0
   end
   
-  def register_observer(observer)
-    @observers << observer
-  end
-  
-  def unregister_observer(observer)
-    @observers.delete(observer)
-  end
-  
-  def notify
-    update_price = generate_price
-    @observers.each do |observer|
-      observer.notify(@name, update_price)
-    end
-  end
+
 end
